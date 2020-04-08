@@ -37,7 +37,7 @@ class helperPDF():
         self.widget = None
         self.printer, self.dpi, self.constPaperScreen, self.layout = self.initPrinter(printer=self.printer, resolution=self.resolution_type, margins=self.pageMargins, orientation=self.orientation)
         self.widget = None
-        self.header_info = None
+        self.headerData = None
         self.preview = False
         self.last_cursor_ack = None
         self.last_page_ack = 1
@@ -715,6 +715,8 @@ class helperPDF():
                 options = None
                 if typeq == 'single_question':
                     nlines = row.get('empty_lines')
+                    if not nlines:
+                        nlines = 0
                 else:
                     options = row.get('options')
                     if typeq == 'test_question':
@@ -773,62 +775,63 @@ class helperPDF():
         if not cursor:
             cursor = self.initCursor(document)
         
-        rows = len(options)
-        table = cursor.insertTable(rows,3,self.styles['option.table'])
-        i=0
-        tf = table.format()
-        tf.setCellSpacing(mmToPixels(2,1200))
-        table.setFormat(tf)
-        for opt in options:
-            text = opt.get('text1')
-            text = text.capitalize()
-            pic = opt.get('pic1')
-            is_valid = opt.get('valid')
+        if options:
+            rows = len(options)
+            table = cursor.insertTable(rows,3,self.styles['option.table'])
+            i=0
+            tf = table.format()
+            tf.setCellSpacing(mmToPixels(2,1200))
+            table.setFormat(tf)
+            for opt in options:
+                text = opt.get('text1')
+                text = text.capitalize()
+                pic = opt.get('pic1')
+                is_valid = opt.get('valid')
 
-            iconbox = ICONS['option']
-            size = None
-            family = None
-            color = None
-            weight = None
-            style = 'defaultfont'
-            if html:
-                if is_valid:
-                    style = 'answer_ok'
-                    color = 'darkgreen'
-                    iconbox = ICONS['boxok']
-                    family = self.styles[style].family()
-                    size = int(self.styles[style].pointSize())
-                    weight = int(self.styles[style].weight()*8)
-                    decoration = 'none'
-                else:
-                    style = 'answer_fail'
-                    color = 'darksalmon'
-                    iconbox = ICONS['boxfail']
-                    family = self.styles[style].family()
-                    size = int(self.styles[style].pointSize())
-                    weight = int(self.styles[style].weight()*8)
-                    decoration = 'line-through'
-
-            c,cell = self.setupCell(table,i,0,centerV=True,centerH=False)
-            img = QImage(iconbox)
-            img = img.scaledToHeight(QFontMetrics(self.styles[style]).height(),Qt.SmoothTransformation)
-            c.insertImage(img)
-            if pic:
-                c,cell = self.setupCell(table,i,1,centerV=True,centerH=False)
-                img = dataPixMapToImage(pic)
-                if img.isNull():
-                    qDebug(_('Error: Invalid image detected'))
-                else:
-                    img = img.scaledToHeight(QFontMetrics(self.styles['defaultfont']).height()*5,Qt.SmoothTransformation)
-                    c.insertImage(img)
-            if text:
-                c,cell = self.setupCell(table,i,2,centerV=True,centerH=False)
+                iconbox = ICONS['option']
+                size = None
+                family = None
+                color = None
+                weight = None
+                style = 'defaultfont'
                 if html:
-                    c.insertHtml('<span style="text-decoration:{};font-size:{}pt;font-family:{};color:{};font-weight:{};">{}</span>'.format(decoration,size,family,color,weight,text))
-                else:
-                    c.setCharFormat(self.styles['text'])
-                    c.insertText(text)
-            i += 1
+                    if is_valid:
+                        style = 'answer_ok'
+                        color = 'darkgreen'
+                        iconbox = ICONS['boxok']
+                        family = self.styles[style].family()
+                        size = int(self.styles[style].pointSize())
+                        weight = int(self.styles[style].weight()*8)
+                        decoration = 'none'
+                    else:
+                        style = 'answer_fail'
+                        color = 'darksalmon'
+                        iconbox = ICONS['boxfail']
+                        family = self.styles[style].family()
+                        size = int(self.styles[style].pointSize())
+                        weight = int(self.styles[style].weight()*8)
+                        decoration = 'line-through'
+
+                c,cell = self.setupCell(table,i,0,centerV=True,centerH=False)
+                img = QImage(iconbox)
+                img = img.scaledToHeight(QFontMetrics(self.styles[style]).height(),Qt.SmoothTransformation)
+                c.insertImage(img)
+                if pic:
+                    c,cell = self.setupCell(table,i,1,centerV=True,centerH=False)
+                    img = dataPixMapToImage(pic)
+                    if img.isNull():
+                        qDebug(_('Error: Invalid image detected'))
+                    else:
+                        img = img.scaledToHeight(QFontMetrics(self.styles['defaultfont']).height()*5,Qt.SmoothTransformation)
+                        c.insertImage(img)
+                if text:
+                    c,cell = self.setupCell(table,i,2,centerV=True,centerH=False)
+                    if html:
+                        c.insertHtml('<span style="text-decoration:{};font-size:{}pt;font-family:{};color:{};font-weight:{};">{}</span>'.format(decoration,size,family,color,weight,text))
+                    else:
+                        c.setCharFormat(self.styles['text'])
+                        c.insertText(text)
+                i += 1
        
         return self.writeSeparator(document,single=True)
 
@@ -836,6 +839,9 @@ class helperPDF():
         if not cursor:
             cursor = self.initCursor(document)
         
+        if not options:
+            return self.writeSeparator(document,single=True)
+
         rows = len(options)
         table = cursor.insertTable(rows,7,self.styles['option.table.join'])
         tf = table.format()
