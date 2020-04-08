@@ -37,7 +37,9 @@ class tableHelper(QObject):
         if parent:
             # link to parent as controller for calling functions, events or sending data back
             self.controller = parent
-
+            if getattr(parent,'debug'):
+                if parent.debug:
+                    self.debug_level = 2
         if table:
             self.number_columns_to_set_into_model = 6
             self.private_last_columns = 2
@@ -144,7 +146,7 @@ class tableHelper(QObject):
         #self.resolver.reset()
         if change:
             self.pool.set_stateString(self.stateString)
-            self.tableChanged.emit()
+        self.tableChanged.emit()
 
     # build new state string representing table
     # two digit with value of 0 (disabled) or 1 (enabled) from each row, representing fixed and linked cells
