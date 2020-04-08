@@ -1,3 +1,10 @@
+kmixtest (0.3.1) bionic; urgency=medium
+
+  * Fix bug opening questions
+  * Fix bug printing empty exams
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Wed, 08 Apr 2020 17:39:16 +0200
+
 kmixtest (0.3) bionic; urgency=medium
 
   * New designer for header layout
