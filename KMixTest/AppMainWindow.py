@@ -115,7 +115,7 @@ class AppMainWindow(QApplication):
                 self.menuController('menu_load_exam')
                 #self.menuController('menu_configure_header')
                 #self.menuController('menu_print_preview')
-                #self.menuController('menu_print_exam')
+                self.menuController('menu_print_exam')
             else:
                 self.autoloadfilename = None
             # self.exitting()
@@ -266,9 +266,11 @@ class AppMainWindow(QApplication):
         # mix join options
         for order,data in enumerate(examdata):
             if data.get('type') == 'join_activity':
-                newdata, jmapping = self.reorderJoinOptions(data['options'])
-                data['options'] = newdata
-                data['join_mapping'] = jmapping
+                options = data.get('options')
+                if options:
+                    newdata, jmapping = self.reorderJoinOptions(options)
+                    data['options'] = newdata
+                    data['join_mapping'] = jmapping
 
         fixed = sorted([ nquestion for nquestion,questiondata in enumerate(examdata) if questiondata.get('fixed') ])
         linked = sorted([ nquestion for nquestion,questiondata in enumerate(examdata) if questiondata.get('linked') ])
@@ -501,6 +503,7 @@ class AppMainWindow(QApplication):
         return exam
 
     def buildHeaderData(self):
+        data = None
         if self.dialogheader:
             data = self.dialogheader.dumpData()
         return data
@@ -715,7 +718,8 @@ class AppMainWindow(QApplication):
             self.alter_models = False
             self.current_filename = None
             self.with_solutionary = True
-            self.dialogheader.reset()
+            if self.dialogheader:
+                self.dialogheader.reset()
         elif data == 'menu_save':
             if self.current_filename:
                 examData = self.buildExamData()
