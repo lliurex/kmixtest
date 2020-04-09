@@ -1,3 +1,10 @@
+kmixtest (0.3.2) bionic; urgency=medium
+
+  * Fix bug resetting exam without header
+  * Complete exam for test application
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Thu, 09 Apr 2020 11:57:34 +0200
+
 kmixtest (0.3.1) bionic; urgency=medium
 
   * Fix bug opening questions
