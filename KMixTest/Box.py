@@ -230,6 +230,7 @@ class Box(QGroupBox):
         data = None
         if filedata:
             image = loadPixMapData(filedata)
+            data = filedata
         else:
             image = QPixmap()
             res = image.load(filename)
@@ -421,6 +422,7 @@ class Box(QGroupBox):
             data = dumpPixMapData(image)
         else:
             image = loadPixMapData(filedata)
+            data = filedata
         button.setIcon(QIcon(image))
         button.setProperty('_filename_',url)
         button.setProperty('_data_',data)
