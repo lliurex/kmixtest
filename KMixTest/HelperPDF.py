@@ -1122,10 +1122,29 @@ class ExamDocument(QTextDocument):
             if i != 0:
                 printer.newPage()
             if headermap:
-                header = str(headermap.get(i+1))
+                header = None
+                ini = None
+                end = None
+                cur = None
+                total = None
+                if isinstance(headermap,dict):
+                    header = headermap.get(i+1)
+                    info = self.models.get(header)
+                    header = str(header)
+                    if isinstance(info,dict):
+                        end = info.get('end')
+                        ini = info.get('ini')
+                        if isinstance(end,int) and isinstance(ini,int):
+                            total = end - ini +1
+                footer = None
+                if isinstance(footermap,dict):
+                    footer = footermap.get(i+1)
+
                 if numbered:
-                    info = self.models.get(headermap.get(i+1))
-                    footer = "{}/{}".format(footermap.get(i+1),info.get('end')-info.get('ini')+1)
+                    if footer and total:
+                        footer = "{}/{}".format(footer,total)
+                    else:
+                        footer = ''
             self.printPageWithHeaders(i+1,p,self,body,printer,header=header,footer=footer,framed=framed)
 
 # class MyPrinter(QPrinter):
