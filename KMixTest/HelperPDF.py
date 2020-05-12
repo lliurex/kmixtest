@@ -144,6 +144,11 @@ class helperPDF():
                 self.printer.setOutputFileName(filename)
             else:
                 self.printer.setOutputFileName('out.pdf')
+        # Not needed to change printer orientation due: self.printer.Orientation() != self.printer.pageLayout().orientation()
+        #if self.printer.paperRect().height() > self.printer.paperRect().width():
+        #    self.printer.setOrientation(QPrinter.Orientation.Portrait)
+        #else:
+        #    self.printer.setOrientation(QPrinter.Orientation.Landscape)
 
     @timed
     def openWidget(self,answermode=False):
@@ -343,6 +348,8 @@ class helperPDF():
 
         #self.document = self.completeDocument(answermode)
         #self.document = self.makeTestDocument(self.document)
+        if self.document.orientation != self.printer.pageLayout().orientation():
+            self.document = self.completeDocument(self.document.mode)
         self.document.printExamModel(self.printer,numbered=self.numberedPages,framed=self.headerWithFrame)
 
     def makeTestDocument(self,document):
@@ -435,6 +442,7 @@ class helperPDF():
     def completeDocument(self, answermode=False):
         document = self.initDocument(printer = self.printer)
         document = self.writeExamData(document, answermode)
+        document.mode = answermode
         return document
 
     def buildFakeHeaderInfo(self):
@@ -994,6 +1002,8 @@ class ExamDocument(QTextDocument):
         self.resolution = None
         self.modelOrder = []
         self.models = {}
+        self.orientation = None
+        self.mode = None
         super().__init__(*args,**kwargs)
 
     def setHeadersSize(self, value):
@@ -1030,6 +1040,10 @@ class ExamDocument(QTextDocument):
                     pageSize.setHeight(pageSize.height()-mmToPixels(self.headersSize,resolution=self.resolution))
             else:
                 return
+        if pageSize.height() > pageSize.width():
+            self.orientation = QPrinter.Orientation.Portrait
+        else:
+            self.orientation = QPrinter.Orientation.Landscape
         self.setPageSize(pageSize)
 
     def printPageWithHeaders(self,index,painter,document,body,printer,header="HEADER",footer="FOOTER",framed=True):
