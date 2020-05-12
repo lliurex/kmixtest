@@ -1,3 +1,11 @@
+kmixtest (0.3.4) bionic; urgency=medium
+
+  *     Remove auto-print when program is called with exam filename when autoload exam
+  *     Fix orientation when change from preview widget
+  *     update translations
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Tue, 12 May 2020 14:43:14 +0200
+
 kmixtest (0.3.3) bionic; urgency=medium
 
   * Fix bugs loading images from exported exammodel
