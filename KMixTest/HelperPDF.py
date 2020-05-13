@@ -756,7 +756,7 @@ class helperPDF():
                 cursor_end = cursor_end.position()
                 pageend,pct  = self.print_cursor_position_y(document)
                 self.pagequestion.setdefault(pagestart,[])
-                self.pagequestion.setdefault(pageend,[])
+                
                 if pagestart == pageend:
                     self.pagequestion[pagestart].append(question_num)
                     self.last_cursor_ack = cursor_end
@@ -772,6 +772,7 @@ class helperPDF():
                             qDebug('{} {} {}'.format(_('Question'),question_num,_('sizes more than one page, skipping break, write sucess')))
 
                 pageend,pct  = self.print_cursor_position_y(document)
+                self.pagequestion.setdefault(pageend,[])
                 self.pagequestion[pageend].append(question_num)
                 self.last_cursor_ack = cursor_end
                 if self.debug:
