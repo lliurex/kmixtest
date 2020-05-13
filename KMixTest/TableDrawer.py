@@ -127,6 +127,7 @@ class tableDrawer(QStyledItemDelegate):
                 opt = QStyleOptionButton()
                 opt.rect = option.rect.translated(DIRECTION_IDX*size_available,0)
                 opt.rect.setWidth(size_available)
+                opt.iconSize = QSize(16,16)
                 #opt.text = "{}".format(DIRECTION_IDX)
                 opt.icon = w.icon()
                 #opt.iconSize = QSize(option.rect.height(),option.rect.height())
