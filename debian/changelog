@@ -1,3 +1,9 @@
+kmixtest (0.3.4) focal; urgency=medium
+
+  * Focal elease
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Mon, 14 Sep 2020 11:11:45 +0200
+
 kmixtest (0.3.4) bionic; urgency=medium
 
   *     Remove auto-print when program is called with exam filename when autoload exam
