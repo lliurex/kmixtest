@@ -13,6 +13,10 @@ import os.path
 
 USE_FAKE_HEADER = True
 
+# QT BUG 85164
+# DEFAULT_TRANSFORMATION_MODE=Qt.SmoothTransformation
+DEFAULT_TRANSFORMATION_MODE=Qt.FastTransformation
+
 # Helper class with pdf stuff related things
 class helperPDF():
 
@@ -487,7 +491,7 @@ class helperPDF():
         sw = max_image_width / image.width()
         sh = max_image_height / image.height()
         s = min(sw,sh)
-        return image.scaled(s*image.width(),s*image.height(),Qt.KeepAspectRatio,Qt.SmoothTransformation)
+        return image.scaled(s*image.width(),s*image.height(),Qt.KeepAspectRatio,DEFAULT_TRANSFORMATION_MODE)
 
     def makeHeaderTable(self, document=None, headerdata=None, answermode=False):
         printer = self.printer
@@ -710,7 +714,7 @@ class helperPDF():
                         cursor2,cell = self.setupCell(table,0,1,centerV=False)
                         image = dataPixMapToImage(title_pic)
                         max_image_width = (document.pageSize() / 4).width()
-                        image = image.scaledToWidth(max_image_width,Qt.SmoothTransformation)
+                        image = image.scaledToWidth(max_image_width,DEFAULT_TRANSFORMATION_MODE)
                         self.writeImage(document, image, cursor=cursor2)
                 self.writeSeparator(document,single=True)
                 if self.debug:
@@ -823,7 +827,7 @@ class helperPDF():
 
                 c,cell = self.setupCell(table,i,0,centerV=True,centerH=False)
                 img = QImage(iconbox)
-                img = img.scaledToHeight(QFontMetrics(self.styles[style]).height(),Qt.SmoothTransformation)
+                img = img.scaledToHeight(QFontMetrics(self.styles[style]).height(),DEFAULT_TRANSFORMATION_MODE)
                 c.insertImage(img)
                 if pic:
                     c,cell = self.setupCell(table,i,1,centerV=True,centerH=False)
@@ -831,7 +835,7 @@ class helperPDF():
                     if img.isNull():
                         qDebug(_('Error: Invalid image detected'))
                     else:
-                        img = img.scaledToHeight(QFontMetrics(self.styles['defaultfont']).height()*5,Qt.SmoothTransformation)
+                        img = img.scaledToHeight(QFontMetrics(self.styles['defaultfont']).height()*5,DEFAULT_TRANSFORMATION_MODE)
                         c.insertImage(img)
                 if text:
                     c,cell = self.setupCell(table,i,2,centerV=True,centerH=False)
@@ -897,7 +901,7 @@ class helperPDF():
                 if img.isNull():
                     qDebug(_('Error: Invalid image detected'))
                 else:
-                    img = img.scaledToHeight(QFontMetrics(self.styles['defaultfont']).height()*5,Qt.SmoothTransformation)
+                    img = img.scaledToHeight(QFontMetrics(self.styles['defaultfont']).height()*5,DEFAULT_TRANSFORMATION_MODE)
                     c.insertImage(img)
 
             c,cell = self.setupCell(table,i,2,centerV=True,centerH=False)
@@ -912,7 +916,7 @@ class helperPDF():
                 c.setCharFormat(self.styles['text'])
                 c.insertText(space)
                 img = QImage(ICONS['option'])
-                img = img.scaledToHeight(QFontMetrics(self.styles['defaultfont']).height()*0.9,Qt.SmoothTransformation)
+                img = img.scaledToHeight(QFontMetrics(self.styles['defaultfont']).height()*0.9,DEFAULT_TRANSFORMATION_MODE)
                 c.insertImage(img)
 
             c,cell = self.setupCell(table,i,3,centerV=False,centerH=False)
@@ -929,7 +933,7 @@ class helperPDF():
                 c.insertHtml('<span style="font-size:{}pt;font-family:{};color:{};font-weight:{};">{} </span>'.format(size,family,color,weight,text))
             else:
                 img = QImage(ICONS['option'])
-                img = img.scaledToHeight(QFontMetrics(self.styles['defaultfont']).height()*0.9,Qt.SmoothTransformation)
+                img = img.scaledToHeight(QFontMetrics(self.styles['defaultfont']).height()*0.9,DEFAULT_TRANSFORMATION_MODE)
                 c.insertImage(img)
                 c.setCharFormat(self.styles['text'])
                 c.insertText(space)
@@ -940,7 +944,7 @@ class helperPDF():
                 if img.isNull():
                     qDebug(_('Error: Invalid image detected'))
                 else:
-                    img = img.scaledToHeight(QFontMetrics(self.styles['defaultfont']).height()*5,Qt.SmoothTransformation)
+                    img = img.scaledToHeight(QFontMetrics(self.styles['defaultfont']).height()*5,DEFAULT_TRANSFORMATION_MODE)
                     c.insertImage(img)
 
             if text2:

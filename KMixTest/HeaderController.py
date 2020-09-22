@@ -649,7 +649,11 @@ class HeaderController(QWidget):
             pix = widget.pixmap()
         if pix:
             pix = loadPixMapData(pix)
-            widget.setPixmap(pix.scaled(w,h,Qt.KeepAspectRatio,Qt.SmoothTransformation))
+            scaled = pix.scaled(w,h,Qt.KeepAspectRatio,Qt.FastTransformation)
+            # QT BUG 85164
+            # scaled = pix.scaled(w,h,Qt.KeepAspectRatio,Qt.SmoothTransformation)
+            widget.setPixmap(scaled)
+        pass
 
     def updateN(self):
         self.ui.headerTable.setColumnCount(self.ncols)
