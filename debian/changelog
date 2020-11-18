@@ -1,3 +1,9 @@
+kmixtest (0.3.4.2) bionic; urgency=medium
+
+  * Fix icon generation
+
+ -- Juanma1980 <juanma1980@gmail.com>  Wed, 18 Nov 2020 16:02:51 +0100
+
 kmixtest (0.3.4.1) bionic; urgency=medium
 
   * Add package metadata
