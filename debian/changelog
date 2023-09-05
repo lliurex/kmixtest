@@ -1,0 +1,63 @@
+kmixtest (0.3.5-1) focal; urgency=medium
+
+  * Temporally fix image scaling bug from qt 5.15 (QTBUG-85164)
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Tue, 22 Sep 2020 14:42:53 +0200
+
+kmixtest (0.3.5) focal; urgency=medium
+
+  * Fix problematic icon (too big) that freezes all graphical session
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Tue, 22 Sep 2020 13:11:04 +0200
+
+kmixtest (0.3.4) focal; urgency=medium
+
+  * Focal elease
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Mon, 14 Sep 2020 11:11:45 +0200
+
+kmixtest (0.3.4) bionic; urgency=medium
+
+  *     Remove auto-print when program is called with exam filename when autoload exam
+  *     Fix orientation when change from preview widget
+  *     update translations
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Tue, 12 May 2020 14:43:14 +0200
+
+kmixtest (0.3.3) bionic; urgency=medium
+
+  * Fix bugs loading images from exported exammodel
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Sat, 25 Apr 2020 16:36:52 +0200
+
+kmixtest (0.3.2) bionic; urgency=medium
+
+  * Fix bug resetting exam without header
+  * Complete exam for test application
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Thu, 09 Apr 2020 11:57:34 +0200
+
+kmixtest (0.3.1) bionic; urgency=medium
+
+  * Fix bug opening questions
+  * Fix bug printing empty exams
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Wed, 08 Apr 2020 17:39:16 +0200
+
+kmixtest (0.3) bionic; urgency=medium
+
+  * New designer for header layout
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Mon, 06 Apr 2020 11:39:41 +0200
+
+kmixtest (0.2) bionic; urgency=medium
+
+  * Improvements & fixes over development version 0.1
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Wed, 01 Apr 2020 18:49:55 +0200
+
+kmixtest (0.1) bionic; urgency=medium
+
+  * Initial Release.
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Tue, 07 Jan 2020 11:40:30 +0100
