@@ -1,3 +1,9 @@
+kmixtest (0.23.5-1) noble; urgency=medium
+
+  * Initial release for noble
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Thu, 26 Sep 2024 13:01:25 +0200
+
 kmixtest (0.13.5-1) jammy; urgency=medium
 
   * Initial release for Jammy
