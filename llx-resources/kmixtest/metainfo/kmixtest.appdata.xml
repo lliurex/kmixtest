@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+<id>kmixtest</id>
+<metadata_license>CC0-1.0</metadata_license>
+<name>KMixTest</name>
+<name xml:lang="es">Generador de exámenes de test en PDF</name>
+<name xml:lang="ca_ES.UTF-8@valencia">Generador de test per examens en PDF</name>
+<name xml:lang="ca_ES@valencia">Generador de test per examens en PDF</name>
+<name xml:lang="ca">Generador de test per examens en PDF</name>
+<name xml:lang="ca_ES">Generador de test per examens en PDF</name>
+<summary>PDF test generator</summary>
+<summary xml:lang="es">Generador de test de examen en PDF</summary>
+<summary xml:lang="ca_ES.UTF-8@valencia">Generador de test per examens en PDF</summary>
+<summary xml:lang="ca_ES@valencia">Generador de test per examens en PDF</summary>
+<summary xml:lang="ca">Generador de test per examens en PDF</summary>
+<summary xml:lang="ca_ES">Generador de test per examens en PDF</summary>
+<description>
+<p>PDF test generator</p>
+<p xml:lang="es">Generador de test de examen en PDF</p>
+<p xml:lang="ca_ES.UTF-8@valencia">Generador de test per examens en PDF</p>
+<p xml:lang="ca_ES@valencia">Generador de test per examens en PDF</p>
+<p xml:lang="ca">Generador de test per examens en PDF</p>
+<p xml:lang="ca_ES">Generador de test per examens en PDF</p>
+</description>
+<categories>
+<category>Office</category>
+</categories>
+<icon type="stock">kmixtest</icon>
+<provides><binary>kmixtest</binary></provides>
+<keywords>
+<keyword>kmixtest</keyword>
+<keyword>KMixTest</keyword>
+</keywords>
+<keywords xml:lang="es">
+<keyword>Generador</keyword>
+<keyword>exámenes</keyword>
+<keyword>test</keyword>
+<keyword>PDF</keyword>
+</keywords>
+<keywords xml:lang="ca_ES.UTF-8@valencia">
+<keyword>per</keyword>
+<keyword>examens</keyword>
+</keywords>
+<keywords xml:lang="ca_ES@valencia">
+</keywords>
+<keywords xml:lang="ca">
+</keywords>
+<keywords xml:lang="ca_ES">
+
+</keywords>
+</component>
