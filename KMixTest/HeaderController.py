@@ -6,7 +6,7 @@ from PySide2.QtUiTools import *
 
 from .Ui_headerForm import Ui_headerForm
 from .Util import dumpPixMapData, loadPixMapData, fileToPixMap
-
+from .Config import _
 from os.path import expanduser
 from copy import deepcopy
 
